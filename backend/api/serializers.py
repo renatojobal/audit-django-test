@@ -9,19 +9,31 @@ from rest_framework import serializers
 # Utilidades de django
 from django.contrib.auth.models import User
 
+
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         fields = '__all__'
         read_only_fields = ('id')
 
-    def create(self, validated_data):
-        instance = Profile(**validated_data)
-        instance.save()
-        return instance
+    id = serializers.ReadOnlyField()
+    phone_number = serializers.CharField()
+    gender = serializers.CharField()
+    birthday = serializers.DateField()
+    picture = serializers.ImageField()
 
-    def update(self, instance, validated_data):
+    created = serializers.DateField()
+    modified = serializers.DateField()
+
+    def create(self, validate_data):
+        instance = Profile()
+        # ! FIXME
+        # instance.user = UserAPI()
+        instance.phone_number = validate_data.get('phone_number')
+        instance.gender = validate_data.get('gender')
+        instance.birthday = validate_data.get('birthday')
         instance.save()
+
         return instance
 
 
