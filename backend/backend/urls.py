@@ -1,18 +1,15 @@
 from django.urls import include, path
 from rest_framework import routers
-from api import views
+from api.api import ProfileAPI
 from django.contrib import admin
 
-router = routers.DefaultRouter()
-router.register(r'users', views.ProfileViewSet)
 
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api/1.0/create_user', ProfileAPI.as_view(), name = "api_create_user")
 ]
 
 
