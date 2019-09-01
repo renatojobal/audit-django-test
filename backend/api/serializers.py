@@ -1,3 +1,4 @@
+
 # DJango utilities
 from api.models import Profile
 
@@ -22,6 +23,9 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         instance.save()
         return instance
+
+
+
 
 
 # Claso para traducir el usuario

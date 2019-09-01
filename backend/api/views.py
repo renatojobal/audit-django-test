@@ -1,5 +1,7 @@
+
 # Django
 from api.models import Profile
+from django.shortcuts import render
 
 # Rest_framework
 from rest_framework import viewsets
@@ -12,4 +14,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """
     queryset = Profile.objects.all().order_by('-date_joined')
     serializer_class = ProfileSerializer
+
+
 
