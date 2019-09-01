@@ -11,4 +11,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/1.0/create_profile', ProfileAPI.as_view(), name = "api_create_profile"),
     path('api/1.0/create_user/', UserAPI.as_view(), name = 'api_create_user'),
-
+]
