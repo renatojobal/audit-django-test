@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Seting mine user model by default
+AUTH_USER_MODEL = 'myapp.User'
+
+
 
 # Application definition
 
@@ -41,8 +45,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    'api',
     'login_app',
+    'myapp'
 ]
 
 MIDDLEWARE = [
