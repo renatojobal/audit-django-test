@@ -10,4 +10,7 @@ urlpatterns = [
 
     # URLs de login_app
     path('login_app/', include(('login_app.urls'))),
+
+    # URLs de myapp
+    path('myapp/', include(('myapp.urls'))),
 ]
