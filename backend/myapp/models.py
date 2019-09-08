@@ -48,19 +48,6 @@ class TouristPoint(models.Model):
     longitude = models.CharField(max_length=100)
 
 
-class Route(models.Model):
-    """
-    s
-    """
-    # * PK
-    idRoute = models.AutoField(primary_key=True)
-
-    # * Atributos relacionales
-    touristPoints = models.ManyToManyField(to=TouristPoint)
-
-    # * Otros atributos
-    name = models.CharField(max_length=100)
-    score = models.IntegerField(default=0)
 
 
 # Inheriting from AbstractUser
@@ -83,12 +70,27 @@ class User(AbstractUser):
     # idUser = models.AutoField(primary_key=True) 
 
     # * Atributos relacionales
-    routs = models.ManyToManyField(to=Route)
 
     # * Otros atributos
     birthday = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=1, default='U', blank=True)
     points = models.IntegerField(blank=True, null=True)
+
+
+class Route(models.Model):
+    """
+    s
+    """
+    # * PK
+    idRoute = models.AutoField(primary_key=True)
+
+    # * Atributos relacionales
+    touristPoints = models.ManyToManyField(to=TouristPoint)
+    users = models.ManyToManyField(to=User)
+
+    # * Otros atributos
+    name = models.CharField(max_length=100)
+    score = models.IntegerField(default=0)
 
 
 class UserRole(models.Model):
