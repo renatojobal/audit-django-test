@@ -2,7 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 from django.contrib import admin
 
-
+from .router import router
 urlpatterns = [
 
     # URLs de django apps
@@ -12,5 +12,5 @@ urlpatterns = [
     path('login_app/', include(('login_app.urls'))),
 
     # URLs de myapp
-    path('myapp/', include(('myapp.urls'))),
+        path('api/', include(router.urls)),
 ]

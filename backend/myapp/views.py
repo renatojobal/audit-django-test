@@ -1,25 +1,15 @@
 from rest_framework.views import APIView
-from .serializers import UserSerializer
-from rest_framework_simplejwt import authentication
-from rest_framework import permissions
-from rest_framework.response import Response
-from .models import User
+from rest_framework import viewsets
+from . import models
+from . import serializers
+from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
 
-class UserAPI(APIView):
-    """
-    View to list all users in the system.
+class UserViewset(viewsets.ModelViewSet):
+    queryset = models.User.objects.all()
+    serializer_class = serializers.UserSerializer
 
-    * Requires token authentication.
-    * Only admin users are able to access this view.s
-    """
-    # authentication_classes = [authentication.JWTTokenUserAuthentication] Creo que no es neceserio implmenetar ya que está especificado en settings
-    permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, format=None):
-        """
-        Return a list of all users.
-        """
-        usernames = [user.username for user in User.objects.all()]
-        return Response(usernames)
-
+class RoleViewset(viewsets.ModelViewSet):
+    queryset = models.Role.objects.all()
+    serializer_class = serializers.RoleSerializer
 

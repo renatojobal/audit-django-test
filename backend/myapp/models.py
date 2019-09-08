@@ -4,6 +4,65 @@ from django.contrib.auth.models import AbstractUser
 
 # La documemntación de los atributos se encuentra en el diagrama de entidades
 
+
+class Role(models.Model):
+    """
+    
+    """
+
+    # * PK
+    idRole = models.AutoField(primary_key=True)
+    
+    # * Atributos relacionales
+
+    # * Otros atributos
+    name = models.CharField(max_length=100)
+
+
+class City(models.Model):
+    """
+    """
+    # * PK
+    idCity = models.AutoField(primary_key=True)
+
+    # * Atributos relacionales
+
+    # * Otros atributos
+    name = models.CharField(max_length=100)
+
+
+
+class TouristPoint(models.Model):
+    """
+    
+    """
+    # * PK
+    idTouristPoint = models.AutoField(primary_key=True)
+
+    # * Atributos relacionales
+    city = models.ForeignKey(to=City, on_delete=models.CASCADE)
+
+    # * Otros atributos
+    name = models.CharField(max_length=100)
+    latituded = models.CharField(max_length=100)
+    longitude = models.CharField(max_length=100)
+
+
+class Route(models.Model):
+    """
+    s
+    """
+    # * PK
+    idRoute = models.AutoField(primary_key=True)
+
+    # * Atributos relacionales
+    touristPoints = models.ManyToManyField(to=TouristPoint)
+
+    # * Otros atributos
+    name = models.CharField(max_length=100)
+    score = models.IntegerField(default=0)
+
+
 # Inheriting from AbstractUser
 class User(AbstractUser):
     """
@@ -21,9 +80,10 @@ class User(AbstractUser):
     points
     """
     # * PK
-    idUser = models.AutoField(primary_key=True) 
+    # idUser = models.AutoField(primary_key=True) 
 
     # * Atributos relacionales
+    routs = models.ManyToManyField(to=Route)
 
     # * Otros atributos
     birthday = models.DateField(blank=True, null=True)
@@ -31,45 +91,20 @@ class User(AbstractUser):
     points = models.IntegerField(blank=True, null=True)
 
 
-class City(models.User):
+class UserRole(models.Model):
     """
+
     """
+
     # * PK
-    idCity = models.AutoField(primary_key=True)
-
-    # * Atributos relacionales
-
-    # * Otros atributos
-    name = models.CharField(max_length=100)
-
-
-class TouristPoint(models.Model):
-    """
+    idUserRole = models.AutoField(primary_key=True)
     
-    """
-    # * PK
-    idTouristPoint = models.AutoField(primary_key=True)
-
     # * Atributos relacionales
+    user = models.ManyToManyField(to=User)
+    roles = models.ManyToManyField(to=Role)
 
     # * Otros atributos
-    name = models.CharField(max_length=100)
-    latituded = models.CharField(max_length=100)
-    longitude = models.CharField(max_length=100)
-
-
-class Route(models.Model):
-    """
-    
-    """
-    # * PK
-    idRoute = models.AutoFieldd(primary_key=True)
-
-    # * Atributos relacionales
-
-    # * Otros atributos
-    name = models.CharField(max_length=100)
-    score = models.IntegerField(default=0)
+    state = models.BooleanField(default=True)
 
 
 class Restaurant(models.Model):
@@ -80,6 +115,8 @@ class Restaurant(models.Model):
     idRestaurant = models.AutoField(primary_key=True)
     
     # * Atributos relacionales
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    city = models.ForeignKey(to=City, on_delete=models.CASCADE)
 
     # * Otros atributos
     name = models.CharField(max_length=100)
@@ -95,35 +132,11 @@ class Prize(models.Model):
     idPrize = models.AutoField(primary_key=True)
 
     # * Atributos relacionales
+    restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE)
 
     # * Otros atributos
-    description = models.Tex
-
-
-class UserRole(models.Model):
-    """
-
-    """
-
-    # * PK
-    idUserRole = models.AutoField(primary_key=True)
-    
-    # * Atributos relacionales
-
-    # * Otros atributos
-    state = models.BooleanField(default=True)
+    description = models.CharField(max_length=300)
+    pointsRequired = models.IntegerField(default=0)
 
 
 
-class Role(models.Model):
-    """
-    
-    """
-
-    # * PK
-    idRole = models.AutoField(primary_key=True)
-    
-    # * Atributos relacionales
-
-    # * Otros atributos
-    name = models.CharField(max_length=100)
