@@ -9,8 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # URLs de login_app
-    path('login_app/', include(('login_app.urls'))),
+    path('', include(('login_app.urls'))),
 
     # URLs de myapp
-        path('api/', include(router.urls)),
+        path('', include(router.urls)),
 ]
