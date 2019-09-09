@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from .models import User, Role, City
+from .models import User, Role, City, UserRole
 from . import serializers
 from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
 
@@ -20,7 +20,7 @@ class UserViewset(viewsets.ModelViewSet):
 class RoleViewset(viewsets.ModelViewSet):
 
     authentication_classes = [JWTTokenUserAuthentication]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAdminUser]
 
     queryset = Role.objects.all()
     serializer_class = serializers.RoleSerializer
@@ -29,7 +29,16 @@ class RoleViewset(viewsets.ModelViewSet):
 class CityViewset(viewsets.ModelViewSet):
 
     authentication_classes = [JWTTokenUserAuthentication]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAdminUser]
 
     queryset = City.objects.all()
     serializer_class = serializers.CitySerializer
+
+
+class UserRoleViewset(viewsets.ModelViewSet):
+
+    authentication_classes = [JWTTokenUserAuthentication]
+    permission_classes = [permissions.IsAdminUser]
+
+    queryset = UserRole.objects.all()
+    serializer_class = serializers.UserRoleSerializer

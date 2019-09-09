@@ -18,3 +18,8 @@ class CitySerializer(ModelSerializer):
     class Meta:
         model = models.City
         fields = '__all__'
+
+class UserRoleSerializer(ModelSerializer):
+    class Meta:
+        model = models.UserRole
+        fields = '__all__'
