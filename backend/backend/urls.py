@@ -1,6 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 from django.contrib import admin
+from myapp import views
 
 from .router import router
 urlpatterns = [
@@ -13,4 +14,6 @@ urlpatterns = [
 
     # URLs de myapp
     path('', include(router.urls)),
+    path('users/', views.users),
+    path('users/(?P<pk>\d+)$', views.users_id)
 ]

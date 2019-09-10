@@ -71,6 +71,7 @@ class User(AbstractUser):
 
     # * Atributos relacionales
 
+
     # * Otros atributos
     birthday = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=1, default='U', blank=True)
