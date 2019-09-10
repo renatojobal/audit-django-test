@@ -45,7 +45,7 @@ class User(AbstractUser):
 
     Attributes:
 
-    idUser
+    # idUser
     username provided by Django
     password provided by Django
     first_name provided by Django
