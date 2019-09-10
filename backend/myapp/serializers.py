@@ -33,6 +33,11 @@ class UserSerializer(serializers.Serializer):
         instance.set_password(validate_data.get('password'))
         instance.save()
         return instance
+
+    def add_points(self, user, points):
+        instance = user
+        instance.points += int(points)
+        return instance
     
     def validate_username(self, data):
         users = models.User.objects.filter(username = data)

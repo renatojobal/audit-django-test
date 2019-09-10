@@ -8,7 +8,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-
+import json
 
 # class UserViewset(viewsets.ModelViewSet):
 
@@ -80,7 +80,42 @@ def users_id(request, pk):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['PUT'])
+def add_points(request):
+    if request.method == 'PUT':
+        """
+        Sumar los puntos enviados
+        """
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
 
+        user_id = int(body['idUser'])
+        points_to_add = int(body['points'])
+
+        queryset = User.objects.filter(id=user_id)
+
+        # ? Argegamos los puntos directamente sin usar points
+        
+        user = queryset.get()
+        user.points += points_to_add
+        user.save()
+        serializer = serializers.UserModelSerializer(user)
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def tourist_user(request):
+    if request.method == 'POST':
+        # TODO
+        # TODO
+        # TODO
+        # TODO
+        """
+        Agregmaos un usuario como un nuevo turista
+        """
+
+        # Obtenemos el rol que corresponda con turista
+        pass
+    pass
 
 
 class RoleViewset(viewsets.ModelViewSet):
