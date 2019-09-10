@@ -112,15 +112,13 @@ def tourist_user(request):
         # Obtenemos el rol que corresponda con turista
         querysetRoles = Role.objects.filter(name='tourist')
         
-        serializer = serializers.UserSerializer(request.data)
-
+        serializer = serializers.UserSerializer(data=request.data)
         if serializer.is_valid():
-            pass
+            user = serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            pass
-
-        pass
-    pass
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
 
 
 class RoleViewset(viewsets.ModelViewSet):
