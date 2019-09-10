@@ -5,19 +5,7 @@ from django.contrib.auth.models import AbstractUser
 # La documemntación de los atributos se encuentra en el diagrama de entidades
 
 
-class Role(models.Model):
-    """
-    
-    """
 
-    # * PK
-    idRole = models.AutoField(primary_key=True)
-    
-    # * Atributos relacionales
-    users = models.ManyToManyField(User, through='UserRole')
-
-    # * Otros atributos
-    name = models.CharField(max_length=100)
 
 
 class City(models.Model):
@@ -78,6 +66,20 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1, default='U', blank=True)
     points = models.IntegerField(blank=True, null=True)
 
+
+class Role(models.Model):
+    """
+    
+    """
+
+    # * PK
+    idRole = models.AutoField(primary_key=True)
+    
+    # * Atributos relacionales
+    users = models.ManyToManyField(User, through='UserRole')
+
+    # * Otros atributos
+    name = models.CharField(max_length=100)
 
 class Route(models.Model):
     """
