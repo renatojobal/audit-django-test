@@ -14,6 +14,7 @@ class Role(models.Model):
     idRole = models.AutoField(primary_key=True)
     
     # * Atributos relacionales
+    users = models.ManyToManyField(User, through='UserRole')
 
     # * Otros atributos
     name = models.CharField(max_length=100)
@@ -96,15 +97,15 @@ class Route(models.Model):
 
 class UserRole(models.Model):
     """
-
+    Tabla customizada de la relacion muchos a muchos entre User y Role
     """
 
     # * PK
     idUserRole = models.AutoField(primary_key=True)
     
     # * Atributos relacionales
-    user = models.ManyToManyField(to=User)
-    roles = models.ManyToManyField(to=Role)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    roles = models.ForeignKey(to=Role, on_delete=models.PROTECT)
 
     # * Otros atributos
     state = models.BooleanField(default=True)
@@ -118,8 +119,9 @@ class Restaurant(models.Model):
     idRestaurant = models.AutoField(primary_key=True)
     
     # * Atributos relacionales
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    city = models.ForeignKey(to=City, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.PROTECT)
+    city = models.ForeignKey(to=City, on_delete=models.DO_NOTHING)
+    
 
     # * Otros atributos
     name = models.CharField(max_length=100)
