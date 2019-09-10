@@ -86,9 +86,8 @@ def add_points(request):
         """
         Sumar los puntos enviados
         """
-        body_unicode = request.body.decode('utf-8')
-        body = json.loads(body_unicode)
 
+        body = request.data
         user_id = int(body['idUser'])
         points_to_add = int(body['points'])
 
@@ -105,15 +104,21 @@ def add_points(request):
 @api_view(['POST'])
 def tourist_user(request):
     if request.method == 'POST':
-        # TODO
-        # TODO
-        # TODO
-        # TODO
+
         """
-        Agregmaos un usuario como un nuevo turista
+        Agregamos un usuario como un nuevo turista
         """
 
         # Obtenemos el rol que corresponda con turista
+        querysetRoles = Role.objects.filter(name='tourist')
+        
+        serializer = serializers.UserSerializer(request.data)
+
+        if serializer.is_valid():
+            pass
+        else:
+            pass
+
         pass
     pass
 
