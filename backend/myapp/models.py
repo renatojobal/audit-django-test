@@ -17,7 +17,7 @@ class City(models.Model):
     # * Atributos relacionales
 
     # * Otros atributos
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=False, null=False, unique=True)
 
 
 
@@ -32,7 +32,7 @@ class TouristPoint(models.Model):
     city = models.ForeignKey(to=City, on_delete=models.CASCADE)
 
     # * Otros atributos
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=False, null=False, unique=True)
     latituded = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
 
@@ -64,7 +64,7 @@ class User(AbstractUser):
     # * Otros atributos
     birthday = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=1, default='U', blank=True)
-    points = models.IntegerField(blank=True, null=True)
+    points = models.IntegerField(blank=True, null=True, default=0)
 
 
 class Role(models.Model):
@@ -73,13 +73,13 @@ class Role(models.Model):
     """
 
     # * PK
-    # idRole = models.AutoField(primary_key=True)
+    # idRole = models.AutoField(primary_key=True) # ! Using the default
     
     # * Atributos relacionales
     users = models.ManyToManyField(User, through='UserRole')
 
     # * Otros atributos
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=False, null=False, unique=True)
 
 class Route(models.Model):
     """
@@ -93,7 +93,7 @@ class Route(models.Model):
     users = models.ManyToManyField(to=User)
 
     # * Otros atributos
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=False, null=False, unique=True)
     score = models.IntegerField(default=0)
 
 
@@ -126,7 +126,7 @@ class Restaurant(models.Model):
     
 
     # * Otros atributos
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=False, null=False, unique=True)
     latitude = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
 
@@ -142,7 +142,7 @@ class Prize(models.Model):
     restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE)
 
     # * Otros atributos
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=300, blank=False, null=False, unique=True)
     pointsRequired = models.IntegerField(default=0)
 
 
