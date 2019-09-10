@@ -42,6 +42,20 @@ def users(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+def users_id(request, pk):
+    if request.method == 'GET':
+        """
+        Devolver el usuario con el id seleccionado
+        """
+
+        queryset = User.objects.filter(id=pk)
+        serializer = serializers.UserModelSerializer(queryset)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
 
 class RoleViewset(viewsets.ModelViewSet):
 
