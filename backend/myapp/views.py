@@ -50,9 +50,35 @@ def users_id(request, pk):
         """
 
         queryset = User.objects.filter(id=pk)
-        serializer = serializers.UserModelSerializer(queryset)
+
+        serializer = serializers.UserModelSerializer(queryset.get())
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    if request.method == 'PUT':
+        """
+        Actualizar el usuario
+        """
+        queryset = User.objects.filter(id=pk)
+        serializer = serializers.UserModelSerializer(queryset.get())
+        if serializer.is_valid():
+            user = serializer.update()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'DELETE':
+        """
+        Borrar el usuario con el id dado
+        """
+        queryset = User.objects.filter(id=pk)
+        serializer = serializers.UserModelSerializer(queryset.get())
+        if serializer.is_valid():
+            result = queryset.delete()
+            return Response(result, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 

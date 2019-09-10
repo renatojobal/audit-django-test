@@ -15,5 +15,5 @@ urlpatterns = [
     # URLs de myapp
     path('', include(router.urls)),
     path('users/', views.users),
-    path('users/<int:pk>/', views.users_id)
+    path('users/<int:pk>/', views.users_id),
 ]
