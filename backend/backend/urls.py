@@ -17,4 +17,5 @@ urlpatterns = [
     path('users/', views.users),
     path('users/<int:pk>/', views.users_id),
     path("addPoints/", views.add_points),
+    path("touristUser/", views.tourist_user),
 ]
