@@ -93,7 +93,7 @@ def add_points(request):
 
         queryset = User.objects.filter(id=user_id)
 
-        # ? Argegamos los puntos directamente sin usar points
+        # ? Agregamos los puntos directamente sin usar points
         
         user = queryset.get()
         user.points += points_to_add
@@ -126,7 +126,7 @@ def tourist_user(request):
 class RoleViewset(viewsets.ModelViewSet):
 
     authentication_classes = [JWTTokenUserAuthentication]
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.AllowAny]
 
     queryset = Role.objects.all()
     serializer_class = serializers.RoleSerializer
@@ -135,7 +135,7 @@ class RoleViewset(viewsets.ModelViewSet):
 class CityViewset(viewsets.ModelViewSet):
 
     authentication_classes = [JWTTokenUserAuthentication]
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.AllowAny]
 
     queryset = City.objects.all()
     serializer_class = serializers.CitySerializer
@@ -144,7 +144,7 @@ class CityViewset(viewsets.ModelViewSet):
 class UserRoleViewset(viewsets.ModelViewSet):
 
     authentication_classes = [JWTTokenUserAuthentication]
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.AllowAny]
 
     queryset = UserRole.objects.all()
     serializer_class = serializers.UserRoleSerializer

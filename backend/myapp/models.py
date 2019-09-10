@@ -12,7 +12,7 @@ class City(models.Model):
     """
     """
     # * PK
-    idCity = models.AutoField(primary_key=True)
+    # idCity = models.AutoField(primary_key=True)
 
     # * Atributos relacionales
 
@@ -26,7 +26,7 @@ class TouristPoint(models.Model):
     
     """
     # * PK
-    idTouristPoint = models.AutoField(primary_key=True)
+    # idTouristPoint = models.AutoField(primary_key=True)
 
     # * Atributos relacionales
     city = models.ForeignKey(to=City, on_delete=models.CASCADE)
@@ -73,7 +73,7 @@ class Role(models.Model):
     """
 
     # * PK
-    idRole = models.AutoField(primary_key=True)
+    # idRole = models.AutoField(primary_key=True)
     
     # * Atributos relacionales
     users = models.ManyToManyField(User, through='UserRole')
@@ -83,10 +83,10 @@ class Role(models.Model):
 
 class Route(models.Model):
     """
-    s
+    
     """
     # * PK
-    idRoute = models.AutoField(primary_key=True)
+    # idRoute = models.AutoField(primary_key=True)
 
     # * Atributos relacionales
     touristPoints = models.ManyToManyField(to=TouristPoint)
@@ -103,7 +103,7 @@ class UserRole(models.Model):
     """
 
     # * PK
-    idUserRole = models.AutoField(primary_key=True)
+    # idUserRole = models.AutoField(primary_key=True)
     
     # * Atributos relacionales
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
@@ -118,7 +118,7 @@ class Restaurant(models.Model):
     
     """
     # * PK
-    idRestaurant = models.AutoField(primary_key=True)
+    # idRestaurant = models.AutoField(primary_key=True)
     
     # * Atributos relacionales
     user = models.ForeignKey(to=User, on_delete=models.PROTECT)
@@ -136,7 +136,7 @@ class Prize(models.Model):
     
     """
     # * PK
-    idPrize = models.AutoField(primary_key=True)
+    # idPrize = models.AutoField(primary_key=True)
 
     # * Atributos relacionales
     restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE)
