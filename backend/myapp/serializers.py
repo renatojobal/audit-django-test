@@ -72,3 +72,23 @@ class UserRoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.UserRole
         fields = '__all__'
+
+class TouristPointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.TouristPoint
+        fields = '__all__'
+
+class RouteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Route
+        fields = '__all__'
+
+class RestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Restaurant
+        fields = '__all__'
+
+class PrizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Prize
+        fields = '__all__'

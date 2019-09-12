@@ -13,7 +13,7 @@ class User(admin.ModelAdmin):
     list_filter = ('points', 'is_staff', 'is_active',)
 
 @admin.register(Role)
-class User(admin.ModelAdmin):
+class Role(admin.ModelAdmin):
 
     list_display =  ('name',)
     list_display_links = ('name',)

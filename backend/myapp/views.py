@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from .models import User, Role, City, UserRole
+from .models import User, Role, City, UserRole, Restaurant, Prize, TouristPoint, Route
 from . import serializers
 from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
 
@@ -146,3 +146,35 @@ class UserRoleViewset(viewsets.ModelViewSet):
 
     queryset = UserRole.objects.all()
     serializer_class = serializers.UserRoleSerializer
+
+class TouristPointViewset(viewsets.ModelViewSet):
+    authentication_classes = [JWTTokenUserAuthentication]
+    permission_classes = [permissions.AllowAny]
+
+    queryset = TouristPoint.objects.all()
+    serializer_class = serializers.TouristPointSerializer
+
+
+
+class RouteViewset(viewsets.ModelViewSet):
+    authentication_classes = [JWTTokenUserAuthentication]
+    permission_classes = [permissions.AllowAny]
+
+    queryset = Route.objects.all()
+    serializer_class = serializers.RouteSerializer
+
+
+class RestaurantViewset(viewsets.ModelViewSet):
+    authentication_classes = [JWTTokenUserAuthentication]
+    permission_classes = [permissions.AllowAny]
+
+    queryset = Restaurant.objects.all()
+    serializer_class = serializers.RestaurantSerializer
+
+
+class PrizeViewset(viewsets.ModelViewSet):
+    authentication_classes = [JWTTokenUserAuthentication]
+    permission_classes = [permissions.AllowAny]
+
+    queryset = Prize.objects.all()
+    serializer_class = serializers.PrizeSerializer
