@@ -140,6 +140,7 @@ class Prize(models.Model):
 
     # * Atributos relacionales
     restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE)
+    users = models.ManyToManyField(to=User) 
 
     # * Otros atributos
     description = models.CharField(max_length=300, blank=False, null=False, unique=True)
