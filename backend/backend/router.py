@@ -6,7 +6,7 @@ router = routers.DefaultRouter()
 
 router.register('roles', views.RoleViewset)
 router.register('cities', views.CityViewset)
-router.register('userroles', views.UserRoleViewset)
+router.register('userRoles', views.UserRoleViewset)
 router.register('touristpoint', views.TouristPointViewset)
 router.register('restaurant', views.RestaurantViewset)
 router.register('route', views.RouteViewset)
