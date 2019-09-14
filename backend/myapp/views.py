@@ -22,6 +22,15 @@ import json
 
 @api_view(['POST', 'GET'])
 def users(request):
+    """
+    Acepta los metodos: [POST, GET]
+
+    Si el metodo es POST:
+        Devuelve un json con la informacion del usuario y status = 201
+    
+    Si el metodo es GET:
+        Devuelve un json con la informacion de tosos los usuarios y status = 200
+    """
     if request.method == 'POST':
         """
         Crear el nuevo usuario con 0 puntos
@@ -42,8 +51,21 @@ def users(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def users_id(request, pk):
+    """
+    Acepta los metodos: [GET, PUT, DELETE]
+
+    Si el metodo es GET:
+        Devuelve un json con la informacion del usuario y status=200
+
+    Si el metodo es PUT:
+        Perminte modificar datos del usuario, devuelve un json con la info del usuario ya con las modificaciones y status=202
+
+    Si el metodo es DELETE:
+        Borra el usuario con el id dado en la url, devuelve un json con meta data y status = 202
+
+    """
     if request.method == 'GET':
         """
         Devolver el usuario con el id seleccionado
@@ -82,6 +104,12 @@ def users_id(request, pk):
 
 @api_view(['PUT'])
 def add_points(request):
+    """
+    Acepta los metodos: [PUT]
+
+    Si el metodo es PUT:
+        Recibe en parametros: {"idUser", "points"}, y agrega los puntos al usuario con el id especificado. Status = 202
+    """
     if request.method == 'PUT':
         """
         Sumar los puntos enviados
@@ -103,6 +131,12 @@ def add_points(request):
 
 @api_view(['POST'])
 def tourist_user(request):
+    """
+    Acepta los metodos: [POST]
+
+    Si el metodos es POST:
+        Crea un usuario con el rol turista y puntos = 0, status = 201
+    """
     if request.method == 'POST':
 
         """
@@ -122,7 +156,7 @@ def tourist_user(request):
 
 
 class RoleViewset(viewsets.ModelViewSet):
-
+    
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
