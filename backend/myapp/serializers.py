@@ -3,6 +3,11 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.Serializer):
+    """
+    Serializador customizado para el modelo 'User'
+    Aqui se escribe por defecto los puntos en 0, asi se especifique otro valor, este no sera tomado en cuenta.
+    ESto con la finalidad de que todos los usuarios se inicialicen en 0 y no exista incongruencias.
+    """
     id = serializers.ReadOnlyField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
@@ -58,37 +63,65 @@ class UserModelSerializer(serializers.ModelSerializer):
 
 
 class RoleSerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'Role'
+    """
     class Meta:
         model = models.Role
         fields = '__all__'
 
 
 class CitySerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'City'
+    """
     class Meta:
         model = models.City
         fields = '__all__'
 
 class UserRoleSerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'UserRole'
+    """
     class Meta:
         model = models.UserRole
         fields = '__all__'
 
 class TouristPointSerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'TouristPoint'
+    """
     class Meta:
         model = models.TouristPoint
         fields = '__all__'
 
 class RouteSerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'Route'
+    """
     class Meta:
         model = models.Route
         fields = '__all__'
 
 class RestaurantSerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'Restaurant'
+    """
     class Meta:
         model = models.Restaurant
         fields = '__all__'
 
 class PrizeSerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'Prize'
+    """
     class Meta:
         model = models.Prize
         fields = '__all__'
