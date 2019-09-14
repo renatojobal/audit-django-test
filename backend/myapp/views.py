@@ -156,7 +156,9 @@ def tourist_user(request):
 
 
 class RoleViewset(viewsets.ModelViewSet):
-    
+    """
+    Proporciona un CRUD general para el modelo de 'Role'
+    """
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
@@ -165,7 +167,9 @@ class RoleViewset(viewsets.ModelViewSet):
 
 
 class CityViewset(viewsets.ModelViewSet):
-
+    """
+    Proporciona un CRUD general para el modelo de 'City'
+    """
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
@@ -174,7 +178,9 @@ class CityViewset(viewsets.ModelViewSet):
 
 
 class UserRoleViewset(viewsets.ModelViewSet):
-
+    """
+    Proporciona un CRUD general para el modelo de 'UserRole'
+    """
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
@@ -182,6 +188,9 @@ class UserRoleViewset(viewsets.ModelViewSet):
     serializer_class = serializers.UserRoleSerializer
 
 class TouristPointViewset(viewsets.ModelViewSet):
+    """
+    Proporciona un CRUD general para el modelo de 'TouristPoint'
+    """
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
@@ -191,6 +200,9 @@ class TouristPointViewset(viewsets.ModelViewSet):
 
 
 class RouteViewset(viewsets.ModelViewSet):
+    """
+    Proporciona un CRUD general para el modelo de 'Route'
+    """
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
@@ -199,6 +211,9 @@ class RouteViewset(viewsets.ModelViewSet):
 
 
 class RestaurantViewset(viewsets.ModelViewSet):
+    """
+    Proporciona un CRUD general para el modelo de 'Restaurant'
+    """
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
@@ -207,6 +222,9 @@ class RestaurantViewset(viewsets.ModelViewSet):
 
 
 class PrizeViewset(viewsets.ModelViewSet):
+    """
+    Proporciona un CRUD general para el modelo de 'Prize'
+    """
     authentication_classes = [JWTTokenUserAuthentication]
     permission_classes = [permissions.AllowAny]
 
