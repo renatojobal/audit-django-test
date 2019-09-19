@@ -10,3 +10,34 @@ Una vez que tengas el entorno activado, regresa a la carpeta raiz d
 el repositorio y escribe 'pip install -r requirements.txt'. Aquí pip instalar todas las librerías que esten escritas en requirements.txt.
 
 Ahora si puedes continuar...
+
+## Levantar el ervidor en tu maquina local
+
+### Paso 1
+Abre una terminal en la carpeta del proyeto y dirigete justo donde esta el archivo manage.py
+
+### Paso 2
+Asegurate de haber realizado las migraciones en la base de datos con los comandos:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+Si ya tienes un super usuario puededs saltarte al siguiente paso, si no, aqui te recordamos como hacerlo:
+
+Escribe:
+
+python manage.py createsuperuser
+
+Se te abrira un shell interactivo donde te pediran tus credenciales.
+
+Nota: El superusuario no es necesario para levantar el servidor pero si para poder visualizar los datos de mejor manera a traves del admin de django
+
+### Paso 3
+Escribe:
+
+python manage.py runserver
+
+Y listo! Si quieres detener el servicio pulsa Ctrl + C.
+
+Nota: Los pasos 1 y 2 solo se deben hacer la primera vez, ya que aun no tienes la base de datos. Despues, solo necesitar el paso 3 cada vez que quieras levantar el servicio.
