@@ -7,29 +7,29 @@ Para poder trabajar sobre el mismo entorno y con las mismas librerías, crea un 
 Luego, activa el entorno yendo a '.env\Scripts\activate'.
 
 Una vez que tengas el entorno activado, regresa a la carpeta raiz d
-el repositorio y escribe 'pip install -r requirements.txt'. Aquí pip instalar todas las librerías que esten escritas en requirements.txt.
+el repositorio y escribe 'pip install -r requirements.txt'. Aquí pip instalar todas las librerías que estén escritas en requirements.txt.
 
 Ahora si puedes continuar...
 
-## Levantar el ervidor en tu maquina local
+## Levantar el servidor en tu maquina local
 
 ### Paso 1
-Abre una terminal en la carpeta del proyeto y dirigete justo donde esta el archivo manage.py
+Abre una terminal en la carpeta del proyecto y dirígete justo donde esta el archivo manage.py
 
 ### Paso 2
-Asegurate de haber realizado las migraciones en la base de datos con los comandos:
+Asegúrate de haber realizado las migraciones en la base de datos con los comandos:
 
 python manage.py makemigrations
 
 python manage.py migrate
 
-Si ya tienes un super usuario puededs saltarte al siguiente paso, si no, aqui te recordamos como hacerlo:
+Si ya tienes un super usuario puedes saltarte al siguiente paso, si no, aquí te recordamos como hacerlo:
 
 Escribe:
 
 python manage.py createsuperuser
 
-Se te abrira un shell interactivo donde te pediran tus credenciales.
+Se te abrirá un shell interactivo donde te pedirán tus credenciales.
 
 Nota: El superusuario no es necesario para levantar el servidor pero si para poder visualizar los datos de mejor manera a traves del admin de django
 
