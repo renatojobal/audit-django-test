@@ -11,7 +11,7 @@ el repositorio y escribe 'pip install -r requirements.txt'. Aquí pip instalar t
 
 Ahora si puedes continuar...
 
-## Levantar el servidor en tu maquina local
+## Levantar el servidor en tu máquina local
 
 ### Paso 1
 Abre una terminal en la carpeta del proyecto y dirígete justo donde esta el archivo manage.py
