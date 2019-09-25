@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import City, TouristPoint, User, Role, Route, UserRole, Restaurant, Prize
+from .models import City, TouristPoint, User, Role, Route, UserRole, Restaurant, Prize, TouristPointRoute
 
 # @admin.register(User)
 # class User(admin.ModelAdmin):
@@ -26,3 +26,4 @@ admin.site.register(Route)
 admin.site.register(UserRole)
 admin.site.register(Restaurant)
 admin.site.register(Prize)
+admin.site.register(TouristPointRoute)

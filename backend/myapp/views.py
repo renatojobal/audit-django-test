@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from .models import User, Role, City, UserRole, Restaurant, Prize, TouristPoint, Route
+from .models import User, Role, City, UserRole, Restaurant, Prize, TouristPoint, Route, TouristPointRoute
 from . import serializers
 from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
 
@@ -186,6 +186,18 @@ class UserRoleViewset(viewsets.ModelViewSet):
 
     queryset = UserRole.objects.all()
     serializer_class = serializers.UserRoleSerializer
+
+
+class TouristPointRouteViewset(viewsets.ModelViewSet):
+    """
+    Proporciona un CRUD general para el modelo de 'UserRole'
+    """
+    authentication_classes = [JWTTokenUserAuthentication]
+    permission_classes = [permissions.AllowAny]
+
+    queryset = TouristPointRoute.objects.all()
+    serializer_class = serializers.TouristPointRouteSerializer
+
 
 class TouristPointViewset(viewsets.ModelViewSet):
     """

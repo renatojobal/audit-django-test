@@ -89,12 +89,25 @@ class Route(models.Model):
     # idRoute = models.AutoField(primary_key=True)
 
     # * Atributos relacionales
-    touristPoints = models.ManyToManyField(to=TouristPoint)
+    touristPoints = models.ManyToManyField(to=TouristPoint, through='TouristPointRoute')
     users = models.ManyToManyField(to=User)
 
     # * Otros atributos
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
     score = models.IntegerField(default=0)
+
+class TouristPointRoute(models.Model):
+    """
+    Tabla customizada de la relazion muchos a muchos entre Rout y TouristPoint
+    """
+    # * PK
+    # Por defecto
+
+    # * Atributos relacionales
+    touristPoint = models.ForeignKey(to=TouristPoint, on_delete=models.CASCADE)
+    route = models.ForeignKey(to=Route, on_delete=models.PROTECT)
+
+    # * Otros atributos
 
 
 class UserRole(models.Model):
@@ -107,7 +120,7 @@ class UserRole(models.Model):
     
     # * Atributos relacionales
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    roles = models.ForeignKey(to=Role, on_delete=models.PROTECT)
+    role = models.ForeignKey(to=Role, on_delete=models.PROTECT)
 
     # * Otros atributos
     state = models.BooleanField(default=True)

@@ -90,6 +90,15 @@ class UserRoleSerializer(serializers.ModelSerializer):
         model = models.UserRole
         fields = '__all__'
 
+class TouristPointRouteSerializer(serializers.ModelSerializer):
+    """
+    Serializazdor que hereda de serializers.ModelSerializer
+    en metadatos se le especifica el modelo de 'TouristPointRoute'
+    """
+    class Meta:
+        model = models.TouristPointRoute
+        fields = '__all__'
+
 class TouristPointSerializer(serializers.ModelSerializer):
     """
     Serializazdor que hereda de serializers.ModelSerializer
