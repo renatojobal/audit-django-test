@@ -208,6 +208,7 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
     latitude = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
+    radio = models.IntegerField(default=100, blank=False, null=False)
 
     def __unicode__(self):
 	    return self.name
