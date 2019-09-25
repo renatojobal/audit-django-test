@@ -182,6 +182,15 @@ class UserRole(models.Model):
     # * Otros atributos
     state = models.BooleanField(default=True)
 
+    def __unicode__(self):
+        string = "%s pertenence al rol %s" % (self.user, self.role)
+        return self.name
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
 
 class Restaurant(models.Model):
     """
@@ -200,6 +209,15 @@ class Restaurant(models.Model):
     latitude = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
 
+    def __unicode__(self):
+	    return self.name
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
 
 class Prize(models.Model):
     """
@@ -215,6 +233,17 @@ class Prize(models.Model):
     # * Otros atributos
     description = models.CharField(max_length=300, blank=False, null=False, unique=True)
     pointsRequired = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        string = self.description
+        new_string = "%s..." % (string[0:20])
+        return new_string
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
 
 
 
