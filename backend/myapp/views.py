@@ -50,6 +50,11 @@ def users(request):
         serializer = serializers.UserSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+# ToDo: Crear vista que devuelva los puntos de un usuario en específico
+
+# ToDo: Crear una vista que devuelva todas las rutas de un usuario en particular
+
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def users_id(request, pk):
