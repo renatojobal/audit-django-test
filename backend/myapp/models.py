@@ -184,7 +184,7 @@ class UserRole(models.Model):
 
     def __unicode__(self):
         string = "%s pertenence al rol %s" % (self.user, self.role)
-        return self.name
+        return string
 
     def __str__(self):
         return self.__unicode__()
@@ -236,7 +236,8 @@ class Prize(models.Model):
 
     def __unicode__(self):
         string = self.description
-        new_string = "%s..." % (string[0:20])
+        cutted_string = string[0:20]
+        new_string = "%s..." % (cutted_string)
         return new_string
 
     def __str__(self):
