@@ -20,6 +20,15 @@ class City(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
 
 
+    def __unicode__(self):
+	    return self.name
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
 
 class TouristPoint(models.Model):
     """
@@ -36,6 +45,14 @@ class TouristPoint(models.Model):
     latituded = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
 
+    def __unicode__(self):
+	    return self.name
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
 
 
 
@@ -67,6 +84,15 @@ class User(AbstractUser):
     points = models.IntegerField(blank=True, null=True, default=0)
 
 
+    def __unicode__(self):
+	    return self.username
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
 class Role(models.Model):
     """
     
@@ -80,6 +106,16 @@ class Role(models.Model):
 
     # * Otros atributos
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
+
+    def __unicode__(self):
+	    return self.name
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
 
 class Route(models.Model):
     """
@@ -96,6 +132,16 @@ class Route(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
     score = models.IntegerField(default=0)
 
+
+    def __unicode__(self):
+	    return self.name
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
 class TouristPointRoute(models.Model):
     """
     Tabla customizada de la relazion muchos a muchos entre Rout y TouristPoint
@@ -108,6 +154,17 @@ class TouristPointRoute(models.Model):
     route = models.ForeignKey(to=Route, on_delete=models.PROTECT)
 
     # * Otros atributos
+
+
+    def __unicode__(self):
+        string = "%s pertenece a %s" % (self.touristPoint, self.route)
+        return string
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
 
 
 class UserRole(models.Model):
