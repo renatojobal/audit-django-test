@@ -4,10 +4,6 @@ from django.contrib.auth.models import AbstractUser
 
 # La documemntación de los atributos se encuentra en el diagrama de entidades
 
-
-
-
-
 class City(models.Model):
     """
     """
