@@ -53,7 +53,7 @@ Obviamente debes tener instalado docker y docker-compose en tu máquina, puedes 
 Abre una terminal en la carpeta raiz del proyecto.
 Aquí escribe:
 ~~~
-docker-compose build .
+docker-compose build
 ~~~
 Esto demorará algunos minutos dependiendo de tu conexión a internet.
 
