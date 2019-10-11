@@ -40,6 +40,7 @@ class TouristPoint(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
     latituded = models.CharField(max_length=100)
     longitude = models.CharField(max_length=100)
+    radio = models.IntegerField(blank=False, null=False, default=100)  # Radio en metros
 
     def __unicode__(self):
 	    return self.name
