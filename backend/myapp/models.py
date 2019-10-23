@@ -168,8 +168,9 @@ class TouristPointRoute(models.Model):
     # * Atributos relacionales
     touristPoint = models.ForeignKey(to=TouristPoint, on_delete=models.CASCADE)
     route = models.ForeignKey(to=Route, on_delete=models.PROTECT)
-
+    
     # * Otros atributos
+    state = models.BooleanField(default=True)
 
 
     def __unicode__(self):
@@ -286,7 +287,7 @@ class Prize(models.Model):
     """
     # * PK
     # id = Generado automaticamente
-    
+
     # * Atributos relacionales
     restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE)
     users = models.ManyToManyField(to=User, through='UserPrize') 
@@ -313,7 +314,7 @@ class Prize(models.Model):
 
 
 class UserPrize(models.Model):
-        """
+    """
     Tabla customizada de la relacion muchos a muchos entre User y Prize
     """
 
