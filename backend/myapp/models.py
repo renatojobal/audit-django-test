@@ -138,7 +138,7 @@ class Route(models.Model):
 
     # * Atributos relacionales
     touristPoints = models.ManyToManyField(to=TouristPoint, through='TouristPointRoute')
-    users = models.ManyToManyField(to=User)
+    users = models.ManyToManyField(to=User, through='UserRoute')
 
     # * Otros atributos
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
@@ -217,6 +217,38 @@ class UserRole(models.Model):
         verbose_name = "usuario y rol"
         verbose_name_plural = "usuarios y roles"
 
+
+class UserRoute(models.Model):
+    """
+    Tabla customizada de la relacion muchos a muchos entre User y Route
+    """
+
+    # * PK
+    # id = Generado automaticamente
+    
+    # * Atributos relacionales
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    route = models.ForeignKey(to=Route, on_delete=models.PROTECT)
+
+    # * Otros atributos
+    state = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        string = "%s pertenence a la ruta %s" % (self.user, self.route)
+        return string
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+    
+    
+    class Meta:
+        verbose_name = "usuario y ruta"
+        verbose_name_plural = "usuarios y rutas"
+
+
 class Restaurant(models.Model):
     """
     
@@ -278,4 +310,6 @@ class Prize(models.Model):
     class Meta:
         verbose_name = "premio"
         verbose_name_plural = "premios"
+        
+
 
