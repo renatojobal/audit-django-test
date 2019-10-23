@@ -289,7 +289,7 @@ class Prize(models.Model):
     
     # * Atributos relacionales
     restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE)
-    users = models.ManyToManyField(to=User) 
+    users = models.ManyToManyField(to=User, through='UserPrize') 
 
     # * Otros atributos
     description = models.CharField(max_length=300, blank=False, null=False, unique=True)
@@ -310,6 +310,35 @@ class Prize(models.Model):
     class Meta:
         verbose_name = "premio"
         verbose_name_plural = "premios"
-        
 
+
+class UserPrize(models.Model):
+        """
+    Tabla customizada de la relacion muchos a muchos entre User y Prize
+    """
+
+    # * PK
+    # id = Generado automaticamente
+
+    # * Atributos relacionales
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    prize = models.ForeignKey(to=Prize, on_delete=models.PROTECT)
+
+    # * Otros atributos
+    state = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        string = "%s reclamó el premio %s" % (self.user, self.prize)
+        return string
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+    
+    
+    class Meta:
+        verbose_name = "usuario y premio"
+        verbose_name_plural = "usuarios y premios"
 
