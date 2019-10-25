@@ -6,9 +6,10 @@ from django.contrib.auth.models import AbstractUser
 
 class City(models.Model):
     """
+    Modelo de ciudad
     """
     # * PK
-    # idCity = models.AutoField(primary_key=True)
+    # id = Generado automaticamente
 
     # * Atributos relacionales
 
@@ -25,13 +26,16 @@ class City(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "ciudad"
+        verbose_name_plural = "ciudades"
 
 class TouristPoint(models.Model):
     """
-    
+    Modedlo de punto turístico
     """
     # * PK
-    # idTouristPoint = models.AutoField(primary_key=True)
+    # id = Generado por automaticamente
 
     # * Atributos relacionales
     city = models.ForeignKey(to=City, on_delete=models.CASCADE)
@@ -51,12 +55,16 @@ class TouristPoint(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "punto turistico"
+        verbose_name_plural = "puntos turisticos"
+
 
 
 # Inheriting from AbstractUser
 class User(AbstractUser):
     """
-
+    Modelo de usuario, en este caso heredamos de AbstactUser para usar customizar el user por defecto de django
     Attributes:
 
     # idUser
@@ -70,7 +78,7 @@ class User(AbstractUser):
     points
     """
     # * PK
-    # idUser = models.AutoField(primary_key=True) 
+    # id = Generado automaticamente
 
     # * Atributos relacionales
 
@@ -90,14 +98,18 @@ class User(AbstractUser):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "usuario"
+        verbose_name_plural = "usuarios"
+
 class Role(models.Model):
     """
-    
+    Modelo de rol
     """
 
     # * PK
-    # idRole = models.AutoField(primary_key=True) # ! Using the default
-    
+    # id = Generado automaticamente
+
     # * Atributos relacionales
     users = models.ManyToManyField(User, through='UserRole')
 
@@ -113,17 +125,21 @@ class Role(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "rol"
+        verbose_name_plural = "roles"
+
 
 class Route(models.Model):
     """
-    
+    Modelo de ruta
     """
     # * PK
-    # idRoute = models.AutoField(primary_key=True)
+    # id = Generado automaticamente
 
     # * Atributos relacionales
     touristPoints = models.ManyToManyField(to=TouristPoint, through='TouristPointRoute')
-    users = models.ManyToManyField(to=User)
+    users = models.ManyToManyField(to=User, through='UserRoute')
 
     # * Otros atributos
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
@@ -139,18 +155,23 @@ class Route(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "ruta"
+        verbose_name_plural = "rutas"
+
 class TouristPointRoute(models.Model):
     """
     Tabla customizada de la relazion muchos a muchos entre Rout y TouristPoint
     """
     # * PK
-    # Por defecto
+    # id = Generado automaticamente
 
     # * Atributos relacionales
     touristPoint = models.ForeignKey(to=TouristPoint, on_delete=models.CASCADE)
     route = models.ForeignKey(to=Route, on_delete=models.PROTECT)
 
     # * Otros atributos
+    state = models.BooleanField(default=True)
 
 
     def __unicode__(self):
@@ -163,6 +184,10 @@ class TouristPointRoute(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "punto turistico y ruta"
+        verbose_name_plural = "puntos turisticos y rutas"
+
 
 class UserRole(models.Model):
     """
@@ -170,8 +195,8 @@ class UserRole(models.Model):
     """
 
     # * PK
-    # idUserRole = models.AutoField(primary_key=True)
-    
+    # id = Generado automaticamente
+
     # * Atributos relacionales
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     role = models.ForeignKey(to=Role, on_delete=models.PROTECT)
@@ -189,17 +214,54 @@ class UserRole(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+
+    class Meta:
+        verbose_name = "usuario y rol"
+        verbose_name_plural = "usuarios y roles"
+
+
+class UserRoute(models.Model):
+    """
+    Tabla customizada de la relacion muchos a muchos entre User y Route
+    """
+
+    # * PK
+    # id = Generado automaticamente
+
+    # * Atributos relacionales
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    route = models.ForeignKey(to=Route, on_delete=models.PROTECT)
+
+    # * Otros atributos
+    state = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        string = "%s pertenence a la ruta %s" % (self.user, self.route)
+        return string
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
+
+    class Meta:
+        verbose_name = "usuario y ruta"
+        verbose_name_plural = "usuarios y rutas"
+
+
 class Restaurant(models.Model):
     """
-    
+    Modelo de restaurante
     """
     # * PK
-    # idRestaurant = models.AutoField(primary_key=True)
-    
+    # id = Generado automaticamente
+
     # * Atributos relacionales
     user = models.ForeignKey(to=User, on_delete=models.PROTECT)
     city = models.ForeignKey(to=City, on_delete=models.DO_NOTHING)
-    
+
 
     # * Otros atributos
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
@@ -216,17 +278,20 @@ class Restaurant(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "restaurante"
+        verbose_name_plural = "restaurantes"
 
 class Prize(models.Model):
     """
-    
+    Modelo de premio
     """
     # * PK
-    # idPrize = models.AutoField(primary_key=True)
+    # id = Generado automaticamente
 
     # * Atributos relacionales
     restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE)
-    users = models.ManyToManyField(to=User) 
+    users = models.ManyToManyField(to=User, through='UserPrize')
 
     # * Otros atributos
     description = models.CharField(max_length=300, blank=False, null=False, unique=True)
@@ -244,5 +309,38 @@ class Prize(models.Model):
     def __repr__(self):
         return self.__unicode__()
 
+    class Meta:
+        verbose_name = "premio"
+        verbose_name_plural = "premios"
 
+
+class UserPrize(models.Model):
+    """
+    Tabla customizada de la relacion muchos a muchos entre User y Prize
+    """
+
+    # * PK
+    # id = Generado automaticamente
+
+    # * Atributos relacionales
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    prize = models.ForeignKey(to=Prize, on_delete=models.PROTECT)
+
+    # * Otros atributos
+    state = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        string = "%s reclamó el premio %s" % (self.user, self.prize)
+        return string
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
+
+    class Meta:
+        verbose_name = "usuario y premio"
+        verbose_name_plural = "usuarios y premios"
 
