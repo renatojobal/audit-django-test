@@ -60,4 +60,8 @@ jobs:
           app-name: 'audit-django-test'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_95f48560679441bca692f85054ad4be2 }}
+      - run: python manage.py makemigrations
+      - run: python manage.py migrate
       - run: python manage.py runserver
+
+
