@@ -7,7 +7,7 @@ from .router import router
 urlpatterns = [
 
     # URLs de django apps
-    path('8wd4ds5ad4w8d4644qd8s/', admin.site.urls),
+    path('admin/', admin.site.urls),
 
     # URLs de login_app
     path('', include(('login_app.urls'))),
